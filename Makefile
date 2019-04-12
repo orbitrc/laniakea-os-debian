@@ -40,18 +40,18 @@ iso/isolinux/: iso/
 	cp -r src/isolinux iso/isolinux
 
 iso/install/initrd.gz: iso/
-	#=======================
-	# Copy common files.
-	#=======================
+	@#=======================
+	@# Copy common files.
+	@#=======================
 	cp $(SRC_DIR)/install/vmlinuz $(ISO_DIR)/install/vmlinuz
 	cp -r $(SRC_DIR)/install/initrd $(ISO_DIR)/install/initrd.d
 	cp $(SRC_DIR)/initrd/bin/* $(ISO_DIR)/install/initrd.d/bin/
 	cp -r $(SRC_DIR)/initrd/lib/* $(ISO_DIR)/install/initrd.d/lib/
 	cp -r $(SRC_DIR)/initrd/usr/lib/* $(ISO_DIR)/install/initrd.d/usr/lib/
 	sudo tar xvf $(SRC_DIR)/initrd/dev.tar --directory $(ISO_DIR)/install/initrd.d
-	#=======================
-	# Make initrd
-	#=======================
+	@#=======================
+	@# Make initrd
+	@#=======================
 	cd $(ISO_DIR)/install/initrd.d ; find . -depth -print | sort | sudo cpio -oaV -H newc --owner=root -O $(ISO_DIR)/install/initrd
 	sudo rm -rf $(ISO_DIR)/install/initrd.d
 	gzip $(ISO_DIR)/install/initrd
