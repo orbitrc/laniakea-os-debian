@@ -14,8 +14,7 @@ FILES = iso/README.txt \
 	iso/g2ldr \
 	iso/g2ldr.mbr \
 	iso/install/ \
-	iso/install.amd/ \
-	iso/install.amd/initrd.gz \
+	iso/install/initrd.gz \
 	iso/isolinux/ \
 	iso/pics/ \
 	iso/pool/ \
@@ -40,15 +39,22 @@ iso/boot/: iso/
 iso/isolinux/: iso/
 	cp -r src/isolinux iso/isolinux
 
-iso/install.amd/initrd.gz: iso/
-	cp -r $(SRC_DIR)/install.amd/initrd $(ISO_DIR)/install.amd/initrd.d
-	cp $(SRC_DIR)/initrd/bin/* $(ISO_DIR)/install.amd/initrd.d/bin/
-	cp -r $(SRC_DIR)/initrd/lib/* $(ISO_DIR)/install.amd/initrd.d/lib/
-	cp -r $(SRC_DIR)/initrd/usr/lib/* $(ISO_DIR)/install.amd/initrd.d/usr/lib/
-	sudo tar xvf $(SRC_DIR)/initrd/dev.tar --directory $(ISO_DIR)/install.amd/initrd.d
-	cd $(ISO_DIR)/install.amd/initrd.d ; find . -depth -print | sort | sudo cpio -oaV -H newc --owner=root -O $(ISO_DIR)/install.amd/initrd
-	# sudo rm -rf $(ISO_DIR)/install.amd/initrd.d
-	gzip $(ISO_DIR)/install.amd/initrd
+iso/install/initrd.gz: iso/
+	#=======================
+	# Copy common files.
+	#=======================
+	cp $(SRC_DIR)/install/vmlinuz $(ISO_DIR)/install/vmlinuz
+	cp -r $(SRC_DIR)/install/initrd $(ISO_DIR)/install/initrd.d
+	cp $(SRC_DIR)/initrd/bin/* $(ISO_DIR)/install/initrd.d/bin/
+	cp -r $(SRC_DIR)/initrd/lib/* $(ISO_DIR)/install/initrd.d/lib/
+	cp -r $(SRC_DIR)/initrd/usr/lib/* $(ISO_DIR)/install/initrd.d/usr/lib/
+	sudo tar xvf $(SRC_DIR)/initrd/dev.tar --directory $(ISO_DIR)/install/initrd.d
+	#=======================
+	# Make initrd
+	#=======================
+	cd $(ISO_DIR)/install/initrd.d ; find . -depth -print | sort | sudo cpio -oaV -H newc --owner=root -O $(ISO_DIR)/install/initrd
+	sudo rm -rf $(ISO_DIR)/install/initrd.d
+	gzip $(ISO_DIR)/install/initrd
 
 
 iso/:
@@ -64,6 +70,7 @@ clean:
 	rm -rf iso/isolinux
 	rm -rf iso/boot
 	rm -f iso/debian
-	rm -f iso/install.amd/initrd.gz
-	sudo rm -rf iso/install.amd/initrd.d/dev
-	rm -rf $(ISO_DIR)/install.amd/initrd.d
+	rm -f iso/install/initrd.gz
+	sudo rm -rf iso/install/initrd.d/dev
+	rm -rf $(ISO_DIR)/install/initrd.d
+	rm -rf $(ISO_DIR)/install/vmlinuz
