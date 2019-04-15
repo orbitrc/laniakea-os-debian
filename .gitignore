@@ -1,2 +1,3 @@
 iso/
 *.iso
+src/packages/*.tar.xz
