@@ -1,6 +1,9 @@
 SRC_DIR = $(PWD)/src
 ISO_DIR = $(PWD)/iso
 
+LIBC_VERSION = $(shell cat versions | grep LIBC_ | cut -d '=' -f 2)
+UTIL_LINUX_VERSION = $(shell cat versions | grep UTIL_LINUX_ | cut -d '=' -f 2)
+
 FILES = iso/README.txt \
 	iso/README.source \
 	iso/autorun.inf \
@@ -21,6 +24,9 @@ FILES = iso/README.txt \
 	iso/setup.exe \
 	iso/tools/ \
 
+PACKAGES = packages/libc6_$(LIBC_VERSION)_amd64.tar.xz \
+	packages/util-linux_$(UTIL_LINUX_VERSION)_amd64.tar.xz
+
 default: md5sum
 	./isochmod.sh
 
@@ -39,7 +45,7 @@ iso/boot/: iso/
 iso/isolinux/: iso/
 	cp -r src/isolinux iso/isolinux
 
-iso/install/initrd.gz: iso/
+iso/install/initrd.gz: iso/ $(PACKAGES)
 	@#=======================
 	@# Copy common files.
 	@#=======================
@@ -48,6 +54,7 @@ iso/install/initrd.gz: iso/
 	cp $(SRC_DIR)/initrd/bin/* $(ISO_DIR)/install/initrd.d/bin/
 	cp -r $(SRC_DIR)/initrd/lib/* $(ISO_DIR)/install/initrd.d/lib/
 	cp -r $(SRC_DIR)/initrd/usr/lib/* $(ISO_DIR)/install/initrd.d/usr/lib/
+	cp -r packages $(ISO_DIR)/install/initrd.d/usr/share/laniakea-installer/
 	sudo tar xvf $(SRC_DIR)/initrd/dev.tar --directory $(ISO_DIR)/install/initrd.d
 	@#=======================
 	@# Make initrd
@@ -56,10 +63,11 @@ iso/install/initrd.gz: iso/
 	sudo rm -rf $(ISO_DIR)/install/initrd.d
 	gzip $(ISO_DIR)/install/initrd
 
-
 iso/:
 	mkdir iso
 
+packages/libc6_$(LIBC_VERSION)_amd64.tar.xz:
+	./download.sh
 
 md5sum: $(FILES)
 	cd iso ; find . -type f -exec md5sum {} \; > md5sum.txt
@@ -74,3 +82,7 @@ clean:
 	sudo rm -rf iso/install/initrd.d/dev
 	rm -rf $(ISO_DIR)/install/initrd.d
 	rm -rf $(ISO_DIR)/install/vmlinuz
+
+purge: clean
+	rm -rf packages/*.tar.xz
+
