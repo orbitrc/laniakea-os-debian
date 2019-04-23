@@ -1,6 +1,9 @@
 SRC_DIR = $(PWD)/src
 ISO_DIR = $(PWD)/iso
 
+VERSION = 0.1.0-alpha
+CODENAME = os0
+
 LIBC_VERSION = $(shell cat versions | grep LIBC_ | cut -d '=' -f 2)
 UTIL_LINUX_VERSION = $(shell cat versions | grep UTIL_LINUX_ | cut -d '=' -f 2)
 
@@ -23,7 +26,8 @@ FILES = iso/README.txt \
 	iso/pool/ \
 	iso/setup.exe \
 	iso/tools/ \
-	iso/.disk/
+	iso/.disk/ \
+	iso/.disk/info
 
 PACKAGES = packages/libc6_$(LIBC_VERSION)_amd64.tar.xz \
 	packages/util-linux_$(UTIL_LINUX_VERSION)_amd64.tar.xz
@@ -48,6 +52,10 @@ iso/isolinux/: iso/
 
 iso/.disk/: iso/
 	cp -r src/.disk iso/.disk
+
+iso/.disk/info: iso/.disk/
+	sed 's/$$(VERSION)/$(VERSION)/' src/.disk/info.src | sed 's/$$(CODENAME)/$(CODENAME)/' > iso/.disk/info
+	rm -f iso/.disk/info.src
 
 iso/install/initrd.gz: iso/ $(PACKAGES)
 	@#=======================
