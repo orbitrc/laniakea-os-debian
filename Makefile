@@ -23,6 +23,7 @@ FILES = iso/README.txt \
 	iso/pool/ \
 	iso/setup.exe \
 	iso/tools/ \
+	iso/.disk/
 
 PACKAGES = packages/libc6_$(LIBC_VERSION)_amd64.tar.xz \
 	packages/util-linux_$(UTIL_LINUX_VERSION)_amd64.tar.xz
@@ -44,6 +45,9 @@ iso/boot/: iso/
 
 iso/isolinux/: iso/
 	cp -r src/isolinux iso/isolinux
+
+iso/.disk/: iso/
+	cp -r src/.disk iso/.disk
 
 iso/install/initrd.gz: iso/ $(PACKAGES)
 	@#=======================
@@ -78,6 +82,7 @@ clean:
 	rm -rf iso/isolinux
 	rm -rf iso/boot
 	rm -f iso/debian
+	rm -rf iso/.disk
 	rm -f iso/install/initrd.gz
 	sudo rm -rf iso/install/initrd.d/dev
 	rm -rf $(ISO_DIR)/install/initrd.d
