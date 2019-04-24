@@ -29,6 +29,14 @@ FILES = iso/README.txt \
 	iso/.disk/ \
 	iso/.disk/info
 
+EMPTY_DIRS = src/install/initrd/var/cache/anna \
+	src/install/initrd/var/lib/apt-install \
+	src/install/initrd/var/lib/cdebconf \
+	src/install/initrd/var/lib/localechooser \
+	src/install/initrd/var/lib/preseed \
+	src/install/initrd/var/log \
+	src/install/initrd/var/run/brltty
+
 PACKAGES = packages/libc6_$(LIBC_VERSION)_amd64.tar.xz \
 	packages/util-linux_$(UTIL_LINUX_VERSION)_amd64.tar.xz
 
@@ -57,7 +65,7 @@ iso/.disk/info: iso/.disk/
 	sed 's/$$(VERSION)/$(VERSION)/' src/.disk/info.src | sed 's/$$(CODENAME)/$(CODENAME)/' > iso/.disk/info
 	rm -f iso/.disk/info.src
 
-iso/install/initrd.gz: iso/ $(PACKAGES)
+iso/install/initrd.gz: iso/ $(PACKAGES) $(EMPTY_DIRS)
 	@#=======================
 	@# Copy common files.
 	@#=======================
@@ -78,6 +86,9 @@ iso/install/initrd.gz: iso/ $(PACKAGES)
 iso/:
 	mkdir iso
 
+$(EMPTY_DIRS):
+	mkdir -p $@
+
 packages/libc6_$(LIBC_VERSION)_amd64.tar.xz:
 	./download.sh
 
@@ -95,6 +106,7 @@ clean:
 	sudo rm -rf iso/install/initrd.d/dev
 	rm -rf $(ISO_DIR)/install/initrd.d
 	rm -rf $(ISO_DIR)/install/vmlinuz
+	rmdir $(EMPTY_DIRS)
 
 purge: clean
 	rm -rf packages/*.tar.xz
