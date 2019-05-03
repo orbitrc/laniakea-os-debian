@@ -1,0 +1,71 @@
+#! /bin/sh
+set -e
+
+LIBC_VERSION="2.27"
+UTIL_LINUX_VERSION="2.31.1"
+PYTHON_VERSION="3.7.3"
+
+. /usr/share/debconf/confmodule
+
+log() {
+	logger -t laniakea-install "$@"
+}
+
+mkdir /tmp/laniakea
+
+cp /usr/share/easter-egg/easter-egg /target/usr/bin/easter-egg
+
+echo "Downloading packages ..."
+
+# wget https://bintray.com/orbit/laniakea/download_file?file_path=libc6%2Flibc6_${LIBC_VERSION}_amd64.tar.xz -O /tmp/laniakea/libc6_${LIBC_VERSION}_amd64.tar.xz
+cp /usr/share/laniakea-installer/packages/libc6_${LIBC_VERSION}_amd64.tar.xz /tmp/laniakea
+
+# wget https://bintray.com/orbit/laniakea/download_file?file_path=util-linux%2Futil-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz -O /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz
+cp /usr/share/laniakea-installer/packages/util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz /tmp/laniakea
+
+cp /usr/share/laniakea-installer/packages/python_${PYTHON_VERSION}_amd64.tar.xz /tmp/laniakea
+
+log "Packages downloaded."
+
+
+/usr/share/laniakea-installer/rm-dpkg.sh
+
+cd /tmp/laniakea ; unxz libc6_${LIBC_VERSION}_amd64.tar.xz ; tar xvf libc6_${LIBC_VERSION}_amd64.tar
+cp -rfd /tmp/laniakea/libc6_${LIBC_VERSION}_amd64/lib /target
+cp -rfd /tmp/laniakea/libc6_${LIBC_VERSION}_amd64/lib64 /target
+cp -rfd /tmp/laniakea/libc6_${LIBC_VERSION}_amd64/usr /target
+
+cd /tmp/laniakea ; unxz util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz ; tar xvf util-linux_${UTIL_LINUX_VERSION}_amd64.tar
+cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/etc /target
+cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/bin /target
+cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/sbin /target
+cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/lib /target
+cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/usr /target
+
+cd /tmp/laniakea ; unxz python_${PYTHON_VERSION}_amd64.tar.xz ; tar xvf python_${PYTHON_VERSION}_amd64.tar
+cp -rfd /tmp/laniakea/python_${PYTHON_VERSION}_amd64/usr /target
+
+
+# Bash
+cp /usr/share/laniakea-installer/bash /target/bin/bash
+
+rm /target/bin/sh
+ln -s bash /target/bin/sh
+
+
+# Copy skel
+cp -rfd /usr/share/laniakea-installer/etc /target/etc
+
+
+if [ 0 -eq 1 ]; then
+	logger -t laniakea-install "Test error"
+	debconf-loadtemplate laniakea-installer /usr/share/laniakea-installer/templates/download-packages.templates
+
+	while [ 1 ]; do
+		db_input critical laniakea/download-packages || true
+		db_go
+		db_get laniakea/download-packages
+	done
+fi
+
+exit 0

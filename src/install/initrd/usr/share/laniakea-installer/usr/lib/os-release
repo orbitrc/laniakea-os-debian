@@ -1,0 +1,9 @@
+NAME="Laniakea"
+ID=laniakea
+PRETTY_NAME="Laniakea 0.1"
+VERSION="0 (os0)"
+VERSION_ID="0.1.0"
+ANSI_COLOR="1;32"
+HOME_URL="https://www.orbitrc.tk"
+SUPPORT_URL="https://www.orbitrc.tk"
+BUG_REPORT_URL="https://bugs.orbitrc.tk"
