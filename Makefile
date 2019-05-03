@@ -52,6 +52,15 @@ iso/README.%: src/README.% iso/
 iso/debian: iso/
 	ln -s . iso/debian
 
+iso/css: iso/
+	cp -r src/css iso/css
+
+iso/doc: iso/
+	cp -r src/doc iso/doc
+
+iso/efi: iso/
+	cp -r src/efi iso/efi
+
 iso/boot/: iso/
 	cp -r src/boot iso/boot
 
@@ -98,6 +107,7 @@ md5sum: $(FILES)
 clean:
 	# rm -rf iso
 	rm -rf iso/README.*
+	rm -rf iso/css iso/doc iso/efi
 	rm -rf iso/isolinux
 	rm -rf iso/boot
 	rm -f iso/debian
