@@ -49,10 +49,13 @@ iso/md5sum.txt:
 iso/README.%: src/README.% iso/
 	cp $< $@
 
+iso/g2ldr iso/g2ldr.mbr: src/g2ldr src/g2ldr.mbr iso/
+	cp $< $@
+
 iso/debian: iso/
 	ln -s . iso/debian
 
-iso/css: iso/
+iso/css/: iso/
 	cp -r src/css iso/css
 
 iso/doc: iso/
@@ -107,6 +110,7 @@ md5sum: $(FILES)
 clean:
 	# rm -rf iso
 	rm -rf iso/README.*
+	rm -f iso/g2ldr*
 	rm -rf iso/css iso/doc iso/efi
 	rm -rf iso/isolinux
 	rm -rf iso/boot
