@@ -1,0 +1,11 @@
+[Unit]
+Description=Laniakea updater
+Before=getty@tty1.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/laniakea/bin/update.sh
+StandardOutput=tty
+
+[Install]
+WantedBy=multi-user.target
