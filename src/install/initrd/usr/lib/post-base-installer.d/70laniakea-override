@@ -54,7 +54,7 @@ ln -s bash /target/bin/sh
 
 
 # Copy skel
-cp -rfd /usr/share/laniakea-installer/etc /target/etc
+cp -rfd /usr/share/laniakea-installer/etc /target
 
 
 if [ 0 -eq 1 ]; then
