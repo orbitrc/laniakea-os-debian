@@ -9,12 +9,12 @@ MAKE_VERSION="4.2.1"
 . /usr/share/debconf/confmodule
 
 log() {
-	logger -t laniakea-install "$@"
+	logger -t laniakea-installer "$@"
 }
 
 mkdir /tmp/laniakea
 
-echo "Downloading packages ..."
+log "Downloading packages ..."
 
 # wget https://bintray.com/orbit/laniakea/download_file?file_path=libc6%2Flibc6_${LIBC_VERSION}_amd64.tar.xz -O /tmp/laniakea/libc6_${LIBC_VERSION}_amd64.tar.xz
 cp /usr/share/laniakea-installer/packages/libc6_${LIBC_VERSION}_amd64.tar.xz /tmp/laniakea
@@ -31,11 +31,13 @@ log "Packages downloaded."
 
 /usr/share/laniakea-installer/rm-dpkg.sh
 
+log "Installing libc6 ($LIBC_VERSION) ..."
 cd /tmp/laniakea ; unxz libc6_${LIBC_VERSION}_amd64.tar.xz ; tar xvf libc6_${LIBC_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/libc6_${LIBC_VERSION}_amd64/lib /target
 cp -rfd /tmp/laniakea/libc6_${LIBC_VERSION}_amd64/lib64 /target
 cp -rfd /tmp/laniakea/libc6_${LIBC_VERSION}_amd64/usr /target
 
+log "Installing util-linux ($UTIL_LINUX_VERSION) ..."
 cd /tmp/laniakea ; unxz util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz ; tar xvf util-linux_${UTIL_LINUX_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/etc /target
 cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/bin /target
@@ -43,13 +45,16 @@ cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/sbin /target
 cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/lib /target
 cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/usr /target
 
+log "Installing python ($PYTHON_VERSION) ..."
 cd /tmp/laniakea ; unxz python_${PYTHON_VERSION}_amd64.tar.xz ; tar xvf python_${PYTHON_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/python_${PYTHON_VERSION}_amd64/usr /target
 
+log "Installing make ($MAKE_VERSION) ..."
 cd /tmp/laniakea ; unxz make_${MAKE_VERSION}_amd64.tar.xz ; tar xvf make_${MAKE_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/make_${MAKE_VERSION}_amd64/usr /target
 
 # Patch packages
+log "Patching packages ..."
 export LIBC_VERSION
 export UTIL_LINUX_VERSION
 export PYTHON_VERSION
@@ -57,6 +62,7 @@ export MAKE_VERSION
 
 /usr/share/laniakea-installer/patch-packages.py
 
+log "Packages patched."
 
 # Bash
 cp /usr/share/laniakea-installer/bash /target/bin/bash
