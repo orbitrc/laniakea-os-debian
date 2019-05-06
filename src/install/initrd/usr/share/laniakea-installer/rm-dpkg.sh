@@ -301,3 +301,6 @@ rm -rf /target/lib/x86_64-linux-gnu/libresolv.so.2
 rm -rf /target/lib/x86_64-linux-gnu/librt.so.1
 rm -rf /target/lib/x86_64-linux-gnu/libthread_db.so.1
 rm -rf /target/lib/x86_64-linux-gnu/libutil.so.1
+
+# zlib
+rm -rf /target/lib/x86_64-linux-gnu/libz.so*

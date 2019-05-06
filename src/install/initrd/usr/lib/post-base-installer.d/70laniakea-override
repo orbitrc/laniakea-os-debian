@@ -5,6 +5,7 @@ LIBC_VERSION="2.27"
 UTIL_LINUX_VERSION="2.31.1"
 PYTHON_VERSION="3.7.3"
 MAKE_VERSION="4.2.1"
+ZLIB_VERSION="1.2.11"
 
 . /usr/share/debconf/confmodule
 
@@ -25,6 +26,8 @@ cp /usr/share/laniakea-installer/packages/util-linux_${UTIL_LINUX_VERSION}_amd64
 cp /usr/share/laniakea-installer/packages/python_${PYTHON_VERSION}_amd64.tar.xz /tmp/laniakea
 
 cp /usr/share/laniakea-installer/packages/make_${MAKE_VERSION}_amd64.tar.xz /tmp/laniakea
+
+cp /usr/share/laniakea-installer/packages/zlib_${ZLIB_VERSION}_amd64.tar.xz /tmp/laniakea
 
 log "Packages downloaded."
 
@@ -52,6 +55,12 @@ cp -rfd /tmp/laniakea/python_${PYTHON_VERSION}_amd64/usr /target
 log "Installing make ($MAKE_VERSION) ..."
 cd /tmp/laniakea ; unxz make_${MAKE_VERSION}_amd64.tar.xz ; tar xvf make_${MAKE_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/make_${MAKE_VERSION}_amd64/usr /target
+
+log "Installing zlib ($ZLIB_VERSION) ..."
+cd /tmp/laniakea ; unxz zlib_${ZLIB_VERSION}_amd64.tar.xz ; tar xvf zlib_${ZLIB_VERSION}_amd64.tar
+cp -rfd /tmp/laniakea/zlib_${ZLIB_VERSION}_amd64/lib /target
+cp -rfd /tmp/laniakea/zlib_${ZLIB_VERSION}_amd64/usr /target
+
 
 # Patch packages
 log "Patching packages ..."

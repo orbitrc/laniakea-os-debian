@@ -6,3 +6,5 @@ wget https://bintray.com/orbit/laniakea/download_file?file_path=util-linux%2Futi
 
 wget https://bintray.com/orbit/laniakea/download_file?file_path=make%2Fmake_${MAKE_VERSION}_amd64.tar.xz -O packages/make_${MAKE_VERSION}_amd64.tar.xz
 
+wget https://bintray.com/orbit/laniakea/download_file?file_path=zlib%2Fzlib_${ZLIB_VERSION}_amd64.tar.xz -O packages/zlib_${ZLIB_VERSION}_amd64.tar.xz
+

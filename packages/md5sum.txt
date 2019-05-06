@@ -1,2 +1,4 @@
-0585d678fa828ccded708accb71c4d6a  ./libc6_2.27_amd64.tar.xz
-897516ce7448a5fe4d8047667573624b  ./util-linux_2.31.1_amd64.tar.xz
+0585d678fa828ccded708accb71c4d6a  libc6_2.27_amd64.tar.xz
+897516ce7448a5fe4d8047667573624b  util-linux_2.31.1_amd64.tar.xz
+8f4535807d6c615651fd2ea8b024d476  make_4.2.1_amd64.tar.xz
+072e88b76e3b0560851a7bb11d0af540  zlib_1.2.11_amd64.tar.xz
