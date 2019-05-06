@@ -4,6 +4,7 @@ set -e
 LIBC_VERSION="2.27"
 UTIL_LINUX_VERSION="2.31.1"
 PYTHON_VERSION="3.7.3"
+MAKE_VERSION="4.2.1"
 
 . /usr/share/debconf/confmodule
 
@@ -25,6 +26,8 @@ cp /usr/share/laniakea-installer/packages/util-linux_${UTIL_LINUX_VERSION}_amd64
 
 cp /usr/share/laniakea-installer/packages/python_${PYTHON_VERSION}_amd64.tar.xz /tmp/laniakea
 
+cp /usr/share/laniakea-installer/packages/make_${MAKE_VERSION}_amd64.tar.xz /tmp/laniakea
+
 log "Packages downloaded."
 
 
@@ -44,6 +47,9 @@ cp -rfd /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64/usr /target
 
 cd /tmp/laniakea ; unxz python_${PYTHON_VERSION}_amd64.tar.xz ; tar xvf python_${PYTHON_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/python_${PYTHON_VERSION}_amd64/usr /target
+
+cd /tmp/laniakea ; unxz make_${MAKE_VERSION}_amd64.tar.xz ; tar xvf make_${MAKE_VERSION}_amd64.tar
+cp -rfd /tmp/laniakea/make_${MAKE_VERSION}_amd64/usr /target
 
 
 # Bash
