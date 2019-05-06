@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+# Copy systems.
+cp -rfd /cdrom/system/usr /target
+cp -rfd /cdrom/system/etc /target
+cp -rfd /cdrom/system/lib /target
+
+exit 0

@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-# Copy systems.
-cp -rfd /usr/share/laniakea-installer/usr /target
-cp -rfd /usr/share/laniakea-installer/etc /target
-cp -rfd /usr/share/laniakea-installer/lib /target
-
-exit 0

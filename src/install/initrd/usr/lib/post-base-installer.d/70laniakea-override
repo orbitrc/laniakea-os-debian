@@ -14,8 +14,6 @@ log() {
 
 mkdir /tmp/laniakea
 
-cp /usr/share/easter-egg/easter-egg /target/usr/bin/easter-egg
-
 echo "Downloading packages ..."
 
 # wget https://bintray.com/orbit/laniakea/download_file?file_path=libc6%2Flibc6_${LIBC_VERSION}_amd64.tar.xz -O /tmp/laniakea/libc6_${LIBC_VERSION}_amd64.tar.xz
@@ -60,7 +58,7 @@ ln -s bash /target/bin/sh
 
 
 # Copy skel
-cp -rfd /usr/share/laniakea-installer/etc /target
+cp -rfd /cdrom/system/etc /target
 
 
 if [ 0 -eq 1 ]; then

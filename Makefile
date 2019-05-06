@@ -19,6 +19,7 @@ FILES = iso/README.txt \
 	iso/firmware/ \
 	iso/g2ldr \
 	iso/g2ldr.mbr \
+	iso/system/ \
 	iso/install/ \
 	iso/install/initrd.gz \
 	iso/isolinux/ \
@@ -77,6 +78,9 @@ iso/.disk/info: iso/.disk/
 	sed 's/$$(VERSION)/$(VERSION)/' src/.disk/info.src | sed 's/$$(CODENAME)/$(CODENAME)/' > iso/.disk/info
 	rm -f iso/.disk/info.src
 
+iso/system/: iso/
+	cp -r src/system iso/system
+
 iso/install/initrd.gz: iso/ $(PACKAGES) $(EMPTY_DIRS)
 	@#=======================
 	@# Copy common files.
@@ -116,6 +120,7 @@ clean:
 	rm -rf iso/boot
 	rm -f iso/debian
 	rm -rf iso/.disk
+	rm -rf iso/system
 	rm -f iso/install/initrd.gz
 	sudo rm -rf iso/install/initrd.d/dev
 	rm -rf $(ISO_DIR)/install/initrd.d

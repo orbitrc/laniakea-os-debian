@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$1" = "--version" ]; then
+	echo "easter-egg (Laniakea) 0.1.0"
+	exit 0
+fi
+
+echo "with <3 rk."
