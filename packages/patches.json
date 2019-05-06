@@ -1,0 +1,14 @@
+{
+  "make-header-omitted": {
+    "target": {
+      "package": "make",
+      "versions": [
+        "4.2.1"
+      ]
+    },
+    "commands": [
+      "cp -rfd usr /target"
+    ],
+    "description": "When build package 'make' I omitted gnumake.h header file."
+  }
+}

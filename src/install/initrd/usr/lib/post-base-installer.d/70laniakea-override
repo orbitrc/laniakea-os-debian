@@ -49,6 +49,14 @@ cp -rfd /tmp/laniakea/python_${PYTHON_VERSION}_amd64/usr /target
 cd /tmp/laniakea ; unxz make_${MAKE_VERSION}_amd64.tar.xz ; tar xvf make_${MAKE_VERSION}_amd64.tar
 cp -rfd /tmp/laniakea/make_${MAKE_VERSION}_amd64/usr /target
 
+# Patch packages
+export LIBC_VERSION
+export UTIL_LINUX_VERSION
+export PYTHON_VERSION
+export MAKE_VERSION
+
+/usr/share/laniakea-installer/patch-packages.py
+
 
 # Bash
 cp /usr/share/laniakea-installer/bash /target/bin/bash
