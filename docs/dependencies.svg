@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="768"
+   viewBox="0 0 270.93333 203.2"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   sodipodi:docname="dependencies.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="511.01628"
+     inkscape:cy="462.45327"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1003"
+     inkscape:window-x="0"
+     inkscape:window-y="45"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4518" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-93.799983)">
+    <rect
+       style="fill:#ffffff;fill-opacity:0.53333297;stroke:#000000;stroke-width:1.00405526;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4520"
+       width="66.145836"
+       height="13.229166"
+       x="95.25"
+       y="103.85415" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="105.56606"
+       y="113.68939"
+       id="text4524"><tspan
+         sodipodi:role="line"
+         id="tspan4522"
+         x="105.56606"
+         y="113.68939"
+         style="stroke-width:0.26458332;font-size:8.46666667px">libc (libc6)</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:0.53333285;stroke:#000000;stroke-width:1.00405526;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4520-3"
+       width="66.145836"
+       height="13.229167"
+       x="26.458334"
+       y="130.31248" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="36.774395"
+       y="140.14774"
+       id="text4524-6"><tspan
+         sodipodi:role="line"
+         id="tspan4522-7"
+         x="36.774395"
+         y="140.14774"
+         style="font-size:8.46666622px;stroke-width:0.26458332">util-linux</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:0.53333285;stroke:#000000;stroke-width:1.00405526;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4520-3-5"
+       width="66.145836"
+       height="13.229167"
+       x="111.125"
+       y="130.31248" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="121.44106"
+       y="140.14775"
+       id="text4524-6-3"><tspan
+         sodipodi:role="line"
+         id="tspan4522-7-5"
+         x="121.44106"
+         y="140.14775"
+         style="font-size:8.46666622px;stroke-width:0.26458332">make</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52916667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 88.989916,118.40623 1.145667,1.98438 1.145667,-1.98438 z m 0.6165,1.19063 -30.427083,7.9375 z"
+       id="rect4572"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.52916676;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 125.67708,122.37498 2.12393,-0.85978 -1.80658,-1.40946 z m 1.26454,-0.44565 1.3813,7.06024 z"
+       id="rect4572-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>
