@@ -1,7 +1,7 @@
 SRC_DIR = $(PWD)/src
 ISO_DIR = $(PWD)/iso
 
-VERSION = 0.1.0-alpha
+VERSION = 0.1.0-alpha1
 CODENAME = os0
 
 LIBC_VERSION = $(shell cat versions | grep LIBC_ | cut -d '=' -f 2)

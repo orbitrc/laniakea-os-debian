@@ -1,8 +1,8 @@
 #!/bin/sh
 
-ALPHA_VERSION="true"
-VERSION="0.1.0-alpha"
-if [ "$ALPHA_VERSION" = "true" ]; then
+BUILD_VERSION="false"
+VERSION="0.1.0-alpha1"
+if [ "$BUILD_VERSION" = "true" ]; then
 	VERSION="$VERSION.`date -u +%Y%m%d%H%M`"
 fi
 
