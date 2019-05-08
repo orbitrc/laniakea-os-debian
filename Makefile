@@ -6,6 +6,7 @@ CODENAME = os0
 
 LIBC_VERSION = $(shell cat versions | grep LIBC_ | cut -d '=' -f 2)
 UTIL_LINUX_VERSION = $(shell cat versions | grep UTIL_LINUX_ | cut -d '=' -f 2)
+include versions
 
 FILES = iso/README.txt \
 	iso/README.source \
@@ -19,6 +20,7 @@ FILES = iso/README.txt \
 	iso/firmware/ \
 	iso/g2ldr \
 	iso/g2ldr.mbr \
+	iso/packages/ \
 	iso/system/ \
 	iso/install/ \
 	iso/install/initrd.gz \
@@ -81,6 +83,9 @@ iso/.disk/info: iso/.disk/
 iso/system/: iso/
 	cp -r src/system iso/system
 
+iso/packages/: iso/
+	cp -r packages $(ISO_DIR)/
+
 iso/install/initrd.gz: iso/ $(PACKAGES) $(EMPTY_DIRS)
 	@#=======================
 	@# Copy common files.
@@ -90,7 +95,6 @@ iso/install/initrd.gz: iso/ $(PACKAGES) $(EMPTY_DIRS)
 	cp $(SRC_DIR)/initrd/bin/* $(ISO_DIR)/install/initrd.d/bin/
 	cp -r $(SRC_DIR)/initrd/lib/* $(ISO_DIR)/install/initrd.d/lib/
 	cp -r $(SRC_DIR)/initrd/usr/lib/* $(ISO_DIR)/install/initrd.d/usr/lib/
-	cp -r packages $(ISO_DIR)/install/initrd.d/usr/share/laniakea-installer/
 	sudo tar xvf $(SRC_DIR)/initrd/dev.tar --directory $(ISO_DIR)/install/initrd.d
 	@#=======================
 	@# Make initrd
@@ -121,6 +125,7 @@ clean:
 	rm -f iso/debian
 	rm -rf iso/.disk
 	rm -rf iso/system
+	rm -rf iso/packages
 	rm -f iso/install/initrd.gz
 	sudo rm -rf iso/install/initrd.d/dev
 	rm -rf $(ISO_DIR)/install/initrd.d

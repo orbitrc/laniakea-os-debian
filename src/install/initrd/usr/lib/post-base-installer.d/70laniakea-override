@@ -7,7 +7,10 @@ PYTHON_VERSION="3.7.3"
 MAKE_VERSION="4.2.1"
 ZLIB_VERSION="1.2.11"
 
+PACKAGES_DIR="/cdrom/packages"
+
 . /usr/share/debconf/confmodule
+
 
 log() {
 	logger -t laniakea-installer "$@"
@@ -17,17 +20,15 @@ mkdir /tmp/laniakea
 
 log "Downloading packages ..."
 
-# wget https://bintray.com/orbit/laniakea/download_file?file_path=libc6%2Flibc6_${LIBC_VERSION}_amd64.tar.xz -O /tmp/laniakea/libc6_${LIBC_VERSION}_amd64.tar.xz
-cp /usr/share/laniakea-installer/packages/libc6_${LIBC_VERSION}_amd64.tar.xz /tmp/laniakea
+cp ${PACKAGES_DIR}/libc6_${LIBC_VERSION}_amd64.tar.xz /tmp/laniakea
 
-# wget https://bintray.com/orbit/laniakea/download_file?file_path=util-linux%2Futil-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz -O /tmp/laniakea/util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz
-cp /usr/share/laniakea-installer/packages/util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz /tmp/laniakea
+cp ${PACKAGES_DIR}/util-linux_${UTIL_LINUX_VERSION}_amd64.tar.xz /tmp/laniakea
 
-cp /usr/share/laniakea-installer/packages/python_${PYTHON_VERSION}_amd64.tar.xz /tmp/laniakea
+cp ${PACKAGES_DIR}/python_${PYTHON_VERSION}_amd64.tar.xz /tmp/laniakea
 
-cp /usr/share/laniakea-installer/packages/make_${MAKE_VERSION}_amd64.tar.xz /tmp/laniakea
+cp ${PACKAGES_DIR}/make_${MAKE_VERSION}_amd64.tar.xz /tmp/laniakea
 
-cp /usr/share/laniakea-installer/packages/zlib_${ZLIB_VERSION}_amd64.tar.xz /tmp/laniakea
+cp ${PACKAGES_DIR}/zlib_${ZLIB_VERSION}_amd64.tar.xz /tmp/laniakea
 
 log "Packages downloaded."
 
