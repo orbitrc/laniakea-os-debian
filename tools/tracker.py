@@ -43,7 +43,7 @@ def tracker_add(md5sum_dict, *args, relative_to=''):
                 md5sum_dict[key] = value
         elif os.path.islink(path):
             key = os.path.join('/', os.path.relpath(str(rpath)))
-            value = os.readlink(path)
+            value = 'l:' + os.readlink(path)
             if md5sum_dict.get(key) is None:
                 print('new file:\t{}'.format(key))
             elif md5sum_dict.get(key) != value:

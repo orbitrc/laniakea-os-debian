@@ -455,7 +455,7 @@
   "/etc/ssl/certs/thawte_Primary_Root_CA.crt": "de3d5930e6e6b3fdb385f60a05206588",
   "/etc/ssl/certs/thawte_Primary_Root_CA_-_G2.crt": "bec566e660af74de78db7b39778c2ef1",
   "/etc/ssl/certs/thawte_Primary_Root_CA_-_G3.crt": "7940d0333af9e5de8515419506540624",
-  "/etc/systemd/system/multi-user.target.wants/laniakea-update.service": "/lib/systemd/system/laniakea-update.service",
+  "/etc/systemd/system/multi-user.target.wants/laniakea-update.service": "l:/lib/systemd/system/laniakea-update.service",
   "/lib/systemd/system/laniakea-update.service": "a0a9221d5b91f5df921ec49afbf7289f",
   "/usr/bin/easter-egg": "ac0d6fe9a38d67a28acd3bf91fe984b6",
   "/usr/lib/os-release": "b924c82d592eb32291f0d700c2f1303c",
