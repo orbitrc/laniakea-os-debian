@@ -82,6 +82,8 @@ iso/.disk/info: iso/.disk/
 
 iso/system/: iso/
 	cp -r src/system iso/system
+	sed 's/$$(VERSION)/$(VERSION)/' src/system/usr/lib/os-release.src | sed 's/$$(CODENAME)/$(CODENAME)/' > iso/system/usr/lib/os-release
+	rm -f iso/system/usr/lib/os-release.src
 
 iso/packages/: iso/
 	cp -r packages $(ISO_DIR)/
